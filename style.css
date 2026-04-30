@@ -95,7 +95,7 @@ nav {
 }
 
 .nav-logo .logo-img {
-  height: 45px;
+  height: 90px;   /* was 45px */
   width: auto;
 }
 
@@ -135,6 +135,32 @@ nav {
   transform: translateY(-1px);
 }
 
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;          /* space between image and text */
+  text-decoration: none;
+}
+
+.logo-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* Optional: subtle highlight for "IRRIGATION & LANDSCAPING" */
+.logo-text span {
+  color: var(--accent-bright);
+}
+
+@media (max-width: 700px) {
+  .logo-text {
+    display: none;   /* hides text on small screens, only logo visible */
+  }
+}
 /* ---------- Hero ---------- */
 #hero {
   min-height: 100vh;
@@ -758,7 +784,7 @@ footer {
 }
 
 .footer-logo-img {
-  height: 40px;
+  height: 70px;
   width: auto;
 }
 
