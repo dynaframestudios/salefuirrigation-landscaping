@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="images/favicon.jpeg" />
@@ -33,16 +33,40 @@
   <meta name="geo.position" content="-22.9667;30.4833" />
   <meta name="ICBM" content="-22.9667, 30.4833" />
 
-  <!-- Font Awesome -->
+  <!-- Font Awesome & Google Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- CSS -->
+  <!-- External CSS & JS -->
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Salefu Irrigation and Landscape",
+      "description": "Professional irrigation and landscaping solutions that save water, look great and add value to your property.",
+      "url": "https://www.salefuirrigation.co.za",
+      "telephone": "+27605013915",
+      "email": "normanrasalanavho6@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1066 Maninini Block L",
+        "addressLocality": "Thohoyandou",
+        "postalCode": "0950",
+        "addressCountry": "ZA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -22.9667,
+        "longitude": 30.4833
+      },
+      "openingHours": "Mo-Sa 07:00-17:00",
+      "priceRange": "$$"
+    }
+  </script>
 </head>
 <body>
 
@@ -54,10 +78,10 @@
 
 <!-- Navigation -->
 <nav aria-label="Main navigation">
-   <a href="#hero" class="nav-logo">
-  <img src="images/logo.png" alt="Salefu Irrigation Logo" class="logo-img" />
-  <span class="logo-text">SALEFU <span>IRRIGATION &amp; LANDSCAPING</span></span>
-</a> 
+  <a href="#hero" class="nav-logo">
+    <img src="images/logo.png" alt="Salefu Irrigation Logo" class="logo-img" />
+    <span class="logo-text">SALEFU <span>IRRIGATION &amp; LANDSCAPING</span></span>
+  </a> 
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
@@ -101,7 +125,7 @@
   </div>
 </section>
 
-<!-- Marquee -->
+<!-- Marquee (service tags) -->
 <div class="marquee-wrap" aria-hidden="true">
   <div class="marquee-track">
     <span class="marquee-item">IRRIGATION SYSTEMS <span class="marquee-dot">✦</span></span>
@@ -111,7 +135,7 @@
     <span class="marquee-item">GARDEN MAINTENANCE <span class="marquee-dot">✦</span></span>
     <span class="marquee-item">PLANTS &amp; FLOWERS <span class="marquee-dot">✦</span></span>
     <span class="marquee-item">WATER WISE SOLUTIONS <span class="marquee-dot">✦</span></span>
-    <!-- duplicate for loop -->
+    <!-- duplicate for seamless loop -->
     <span class="marquee-item">IRRIGATION SYSTEMS <span class="marquee-dot">✦</span></span>
     <span class="marquee-item">LANDSCAPE DESIGN <span class="marquee-dot">✦</span></span>
     <span class="marquee-item">ARTIFICIAL GRASS <span class="marquee-dot">✦</span></span>
@@ -295,7 +319,32 @@
   </div>
 </section>
 
-<!-- Contact Section with FormSubmit -->
+<!-- ========== 🚀 26‑IMAGE MARQUEE GALLERY (BILLION BUCKS) ========== -->
+<section class="visual-spectacle" id="megaGallery">
+  <div class="hero-header-feature reveal">
+    <span class="image-badge"><i class="fas fa-images"></i> 26 MASTERWORKS • PREMIUM VISUALS</span>
+    <h2>THE GRAND GALLERY</h2>
+    <p style="max-width: 700px; margin: 12px auto; color: var(--text-muted);">Every angle, every transformation — 26 high-impact images showing our irrigation & landscaping excellence.</p>
+  </div>
+
+  <!-- Header.jpeg centerpiece -->
+  <div class="header-jumbo reveal">
+    <img src="images/header.jpeg" alt="Salefu signature header - flagship landscape masterpiece" loading="lazy">
+  </div>
+
+  <!-- Dual marquee strips (populated by JavaScript) -->
+  <div class="marquee-wall">
+    <div class="marquee-strip marquee-strip--left" id="marqueeLeftStrip"></div>
+  </div>
+  <div class="marquee-wall">
+    <div class="marquee-strip marquee-strip--right" id="marqueeRightStrip"></div>
+  </div>
+  <div style="text-align: center; padding: 20px 0 30px; font-size: 0.85rem; color: var(--accent-bright);">
+    <i class="fas fa-infinity"></i> Infinite scroll • Hover to pause • 26 iconic projects
+  </div>
+</section>
+
+<!-- Contact Section -->
 <section id="contact" aria-labelledby="contact-heading">
   <div class="contact-grid">
     <div>
@@ -330,18 +379,17 @@
 
     <div>
       <form class="contact-form reveal" action="https://formsubmit.co/normanrasalanavho6@gmail.com" method="POST">
-        <!-- FormSubmit configuration -->
         <input type="hidden" name="_subject" value="New Contact from Salefu Irrigation Website">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_next" value="https://www.salefuirrigation.co.za/thank-you.html">
 
         <div class="form-row">
-          <input type="text" name="name" placeholder="Your Name" required aria-label="Your name" />
-          <input type="tel" name="phone" placeholder="Phone Number" aria-label="Phone number" />
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="tel" name="phone" placeholder="Phone Number">
         </div>
-        <input type="email" name="email" placeholder="Email Address" required aria-label="Email address" />
-        <select name="service" aria-label="Service needed">
+        <input type="email" name="email" placeholder="Email Address" required>
+        <select name="service">
           <option value="" disabled selected>Select a Service</option>
           <option>Irrigation Systems</option>
           <option>Landscaping Services</option>
@@ -350,7 +398,7 @@
           <option>Plants &amp; Flower Supply</option>
           <option>General Enquiry</option>
         </select>
-        <textarea name="message" placeholder="Tell us about your project..." required aria-label="Message"></textarea>
+        <textarea name="message" placeholder="Tell us about your project..." required></textarea>
         <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Send Message →</button>
       </form>
     </div>
@@ -372,34 +420,5 @@
   <i class="fab fa-whatsapp"></i>
 </a>
 
-<!-- JavaScript -->
-<script src="script.js" defer></script>
-
-<!-- Structured Data (kept inline) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Salefu Irrigation and Landscape",
-  "description": "Professional irrigation and landscaping solutions that save water, look great and add value to your property.",
-  "url": "https://www.salefuirrigation.co.za",
-  "telephone": "+27605013915",
-  "email": "normanrasalanavho6@gmail.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "1066 Maninini Block L",
-    "addressLocality": "Thohoyandou",
-    "postalCode": "0950",
-    "addressCountry": "ZA"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": -22.9667,
-    "longitude": 30.4833
-  },
-  "openingHours": "Mo-Sa 07:00-17:00",
-  "priceRange": "$$"
-}
-</script>
 </body>
 </html>
