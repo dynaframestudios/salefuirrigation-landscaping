@@ -38,7 +38,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// FormSubmit feedback (optional: handle success message)
+// FormSubmit feedback
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
   contactForm.addEventListener('submit', function(e) {
@@ -52,3 +52,42 @@ if (contactForm) {
     }, 3000);
   });
 }
+
+// ========== 26‑IMAGE MARQUEE BUILDER ==========
+(function buildMegaMarquee() {
+  // Build array of exactly 26 images: header.jpeg + image1..image6 + image7..image25
+  const imagePaths = [];
+  imagePaths.push('images/header.jpeg');   // flagship
+  for (let i = 1; i <= 6; i++) imagePaths.push(`images/image${i}.jpeg`);
+  for (let i = 7; i <= 25; i++) imagePaths.push(`images/image${i}.jpeg`);
+  // Total = 1 + 6 + 19 = 26
+
+  function createMarqueeItem(imgSrc, altText) {
+    const div = document.createElement('div');
+    div.className = 'marquee-image-card';
+    const img = document.createElement('img');
+    img.src = imgSrc;
+    img.alt = altText || 'Salefu landscaping masterpiece';
+    img.loading = 'lazy';
+    div.appendChild(img);
+    return div;
+  }
+
+  const leftStrip = document.getElementById('marqueeLeftStrip');
+  const rightStrip = document.getElementById('marqueeRightStrip');
+
+  function buildStrip(stripElement, imagesArray) {
+    if (!stripElement) return;
+    stripElement.innerHTML = '';
+    // Append 3 full cycles for seamless infinite animation
+    for (let rep = 0; rep < 3; rep++) {
+      imagesArray.forEach((path, idx) => {
+        const card = createMarqueeItem(path, `Project ${idx+1}`);
+        stripElement.appendChild(card);
+      });
+    }
+  }
+
+  buildStrip(leftStrip, imagePaths);
+  buildStrip(rightStrip, imagePaths);
+})();
