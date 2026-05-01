@@ -1,6 +1,5 @@
 /* ---------- CSS Variables for Light/Dark Mode ---------- */
 :root {
-  /* Light Mode (default) */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fdf9;
   --bg-card: #ffffff;
@@ -52,7 +51,7 @@ body {
   transition: background 0.3s ease, color 0.2s ease;
 }
 
-/* ---------- Theme Toggle Button ---------- */
+/* ---------- Theme Toggle ---------- */
 .theme-toggle {
   position: fixed;
   top: 20px;
@@ -158,51 +157,60 @@ nav {
   }
 }
 
-/* ---------- Hero ---------- */
+/* ========== HERO SECTION – FULL FIX ========== */
 #hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   position: relative;
-  overflow: hidden;
   padding: 120px 5vw 80px;
-  background: var(--bg-secondary);
+  overflow: hidden;
+  background-image: url('images/hero-header.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
 }
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(26,138,50,0.08) 0%, transparent 70%),
-              radial-gradient(ellipse 50% 80% at 10% 80%, rgba(10,92,30,0.12) 0%, transparent 60%);
-  pointer-events: none;
-}
-.hero-bg::after {
+
+/* Dark overlay for text readability */
+#hero::before {
   content: '';
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
-  right: 0;
-  height: 180px;
-  background: repeating-linear-gradient(90deg, transparent 0px, transparent 6px, rgba(26,138,50,0.1) 6px, rgba(26,138,50,0.1) 8px);
-  mask-image: linear-gradient(to top, black 40%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, black 40%, transparent 100%);
-  animation: sway 4s ease-in-out infinite alternate;
-  transform-origin: bottom center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+  pointer-events: none;
 }
-@keyframes sway {
-  from { transform: skewX(-1deg); }
-  to { transform: skewX(1deg); }
-}
-.hero-content {
+
+/* All content sits above overlay */
+.hero-content,
+.hero-stats {
   position: relative;
   z-index: 2;
-  max-width: 640px;
 }
+
+/* Prevent text from going off-screen */
+.hero-content {
+  max-width: 700px;
+  width: 100%;
+}
+
+/* Remove any old .hero-bg reference */
+.hero-bg {
+  display: none;
+}
+
+/* Hero badge (glassmorphism) */
 .hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 50px;
   padding: 6px 16px;
   margin-bottom: 28px;
@@ -212,13 +220,16 @@ nav {
   color: var(--accent-bright);
   text-transform: uppercase;
 }
+
+/* Hero headline – forced white with shadow */
 .hero-headline {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(3.2rem, 8vw, 6.5rem);
   line-height: 0.95;
   letter-spacing: 1px;
   margin-bottom: 24px;
-  color: var(--text-primary);
+  color: #ffffff;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
 }
 .hero-headline .accent {
   color: var(--accent-bright);
@@ -226,13 +237,18 @@ nav {
 .hero-headline .accent2 {
   color: var(--yellow);
 }
+
+/* Hero subtitle */
 .hero-sub {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: var(--text-muted);
+  color: #f0f0f0;
   margin-bottom: 40px;
   font-weight: 300;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
+
+/* Buttons */
 .hero-actions {
   display: flex;
   gap: 16px;
@@ -260,6 +276,8 @@ nav {
 .btn-outline {
   border: 2px solid var(--accent-bright);
   color: var(--accent-bright);
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
   padding: 1rem 2rem;
   border-radius: 50px;
   text-decoration: none;
@@ -269,21 +287,26 @@ nav {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: transparent;
 }
 .btn-outline:hover {
-  background: rgba(45, 184, 75, 0.1);
+  background: rgba(45, 184, 75, 0.2);
 }
+
+/* Hero stats (with dark pill background) */
 .hero-stats {
   position: absolute;
   bottom: 60px;
   right: 5vw;
-  z-index: 2;
   display: flex;
   gap: 32px;
 }
 .stat {
   text-align: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  padding: 8px 20px;
+  border-radius: 60px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .stat-num {
   font-family: 'Bebas Neue', sans-serif;
@@ -293,21 +316,20 @@ nav {
 }
 .stat-label {
   font-size: 0.72rem;
-  color: var(--text-muted);
+  color: #ffffff;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+
 @media (max-width: 900px) {
   .hero-stats {
     position: static;
     margin-top: 48px;
-  }
-  #hero {
-    flex-direction: column;
+    justify-content: center;
   }
 }
 
-/* ---------- Marquee (tags) ---------- */
+/* ---------- Marquee (service tags) ---------- */
 .marquee-wrap {
   background: var(--accent-deep);
   overflow: hidden;
@@ -441,7 +463,7 @@ section {
   border-color: var(--accent-bright);
 }
 
-/* ---------- Portfolio ---------- */
+/* ---------- Portfolio (3x2 grid) ---------- */
 #portfolio {
   background: var(--bg-primary);
 }
@@ -584,7 +606,7 @@ section {
   font-weight: 300;
 }
 
-/* ---------- 26‑Image Mega Gallery (Billion Bucks) ---------- */
+/* ---------- 26‑Image Mega Gallery ---------- */
 .visual-spectacle {
   background: linear-gradient(145deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
   position: relative;
@@ -869,7 +891,7 @@ footer {
   font-weight: 300;
 }
 
-/* ---------- Floating CTA ---------- */
+/* ---------- Floating WhatsApp CTA ---------- */
 .float-cta {
   position: fixed;
   bottom: 28px;
