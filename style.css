@@ -924,3 +924,60 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ---------- IMPROVED MOBILE MARQUEE ---------- */
+@media (max-width: 640px) {
+  .marquee-image-card {
+    width: 160px !important;
+    height: 120px !important;
+    border-radius: 16px !important;
+  }
+  .marquee-strip {
+    gap: 12px !important;
+  }
+  .marquee-strip--left,
+  .marquee-strip--right {
+    animation-duration: 90s !important; /* slower for less CPU */
+  }
+  .hero-header-feature h2 {
+    font-size: 1.8rem !important;
+  }
+  .hero-headline {
+    font-size: clamp(2.5rem, 8vw, 4rem) !important;
+  }
+  .hero-sub {
+    font-size: 0.95rem !important;
+  }
+  .btn-primary, .btn-outline {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.9rem !important;
+  }
+  .service-card {
+    padding: 24px 20px !important;
+  }
+  .why-visual {
+    padding: 30px 20px !important;
+  }
+  .footer-logo-img {
+    height: 50px !important;
+  }
+  .float-cta {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+/* Force no horizontal scroll */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Better animation performance */
+.marquee-strip {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
