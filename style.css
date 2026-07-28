@@ -925,59 +925,86 @@ footer {
   transform: translateY(0);
 }
 
-/* ---------- IMPROVED MOBILE MARQUEE ---------- */
-@media (max-width: 640px) {
-  .marquee-image-card {
-    width: 160px !important;
-    height: 120px !important;
-    border-radius: 16px !important;
+/* ---------- MOBILE HERO FIXES ---------- */
+@media (max-width: 768px) {
+  #hero {
+    padding: 100px 5vw 40px !important;  /* reduce bottom padding */
+    min-height: auto !important;         /* let content determine height */
+    background-attachment: local !important; /* better mobile rendering */
   }
-  .marquee-strip {
-    gap: 12px !important;
+
+  .hero-content {
+    text-align: center;
+    margin-bottom: 40px;
   }
-  .marquee-strip--left,
-  .marquee-strip--right {
-    animation-duration: 90s !important; /* slower for less CPU */
-  }
-  .hero-header-feature h2 {
-    font-size: 1.8rem !important;
-  }
+
   .hero-headline {
-    font-size: clamp(2.5rem, 8vw, 4rem) !important;
+    font-size: clamp(2.5rem, 10vw, 4rem) !important;
+    line-height: 1.1 !important;
   }
+
   .hero-sub {
     font-size: 0.95rem !important;
+    padding: 0 10px;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  /* Override absolute positioning for stats */
+  .hero-stats {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    justify-content: center;
+    gap: 20px;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+  }
+
+  .stat {
+    background: rgba(0, 0, 0, 0.6) !important; /* ensure readability */
+    backdrop-filter: blur(4px);
+    padding: 6px 16px;
+  }
+
+  .stat-num {
+    font-size: 1.8rem !important;
+  }
+
+  .stat-label {
+    font-size: 0.65rem !important;
+  }
+}
+
+/* Extra small devices (<=480px) */
+@media (max-width: 480px) {
+  #hero {
+    padding-top: 80px !important;
+  }
+  .hero-badge {
+    font-size: 0.7rem;
+    margin-bottom: 16px;
   }
   .btn-primary, .btn-outline {
-    padding: 0.75rem 1.5rem !important;
-    font-size: 0.9rem !important;
+    padding: 0.7rem 1.2rem !important;
+    font-size: 0.85rem !important;
   }
-  .service-card {
-    padding: 24px 20px !important;
+  .stat {
+    padding: 4px 12px;
   }
-  .why-visual {
-    padding: 30px 20px !important;
-  }
-  .footer-logo-img {
-    height: 50px !important;
-  }
-  .float-cta {
-    width: 48px;
-    height: 48px;
-    font-size: 1.5rem;
-    bottom: 20px;
-    right: 20px;
+  .stat-num {
+    font-size: 1.4rem !important;
   }
 }
 
-/* Force no horizontal scroll */
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* Better animation performance */
-.marquee-strip {
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
+#hero {
+  background-color: #0a2e1a; /* dark green fallback */
+  background-image: url('images/hero-header.jpg');
+  background-size: cover;
+  background-position: center center;
 }
